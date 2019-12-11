@@ -1,6 +1,6 @@
 ﻿/*******************************************************************************
  * Copyright © 2016 NFine.Framework 版权所有
- * Author: NFine
+ * Author: Sdaulld
  * Description: NFine快速开发平台
  * Website：http://www.nfine.cn
 *********************************************************************************/
@@ -26,7 +26,7 @@ namespace NFine.Web.Areas.ExampleManage.Controllers
             mail.MailUserName = Configs.GetValue("MailUserName");
             mail.MailPassword = Configs.GetValue("MailPassword");
             mail.MailName = "NFine快速开发平台";
-            mail.Send(account, title, content);
+            mail.SendMailUse(account, title, content);
             return Success("发送成功。");
         }
     }

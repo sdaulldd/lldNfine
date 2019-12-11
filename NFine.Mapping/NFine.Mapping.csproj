@@ -62,6 +62,7 @@
     <Compile Include="SystemSecurity\DbBackupMap.cs" />
     <Compile Include="SystemSecurity\FilterIPMap.cs" />
     <Compile Include="SystemSecurity\LogMap.cs" />
+    <Compile Include="Work\DailyMap.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NFine.Domain\NFine.Domain.csproj">
