@@ -6,6 +6,12 @@ namespace NFine.Web
     [HandlerLogin]
     public abstract class ControllerBase : Controller
     {
+        protected ControllerBase()
+        {
+            if (operatorModel == null)
+                this.operatorModel = OperatorProvider.Provider.GetCurrent();
+        }
+
         public Log FileLog
         {
             get { return LogFactory.GetLogger(this.GetType().ToString()); }
@@ -40,5 +46,7 @@ namespace NFine.Web
         {
             return Content(new AjaxResult { state = ResultType.error.ToString(), message = message }.ToJson());
         }
+        public OperatorModel operatorModel { get; set; }
+
     }
 }

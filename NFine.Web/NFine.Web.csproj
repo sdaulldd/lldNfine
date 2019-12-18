@@ -141,7 +141,8 @@
     <Compile Include="Areas\SystemSecurity\Controllers\LogController.cs" />
     <Compile Include="Areas\SystemSecurity\Controllers\ServerMonitoringController.cs" />
     <Compile Include="Areas\SystemSecurity\SystemSecurityAreaRegistration.cs" />
-    <Compile Include="Areas\WorkDail\Controllers\UserController.cs" />
+    <Compile Include="Areas\Work\Controllers\DailyController.cs" />
+    <Compile Include="Areas\Work\WorkAreaRegistration.cs" />
     <Compile Include="Controllers\ClientsDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -563,7 +564,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\ReportManage\Views\Echarts\" />
-    <Folder Include="Areas\WorkDail\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\ReportManage\Views\Highcharts\Sample1.cshtml" />
@@ -617,6 +617,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\SystemManage\Views\User\Info.cshtml" />
+    <Content Include="Areas\Work\Views\Daily\Index.cshtml" />
+    <Content Include="Areas\Work\Views\Web.config" />
+    <Content Include="Areas\Work\Views\Daily\Form.cshtml" />
+    <Content Include="Areas\Work\Views\Daily\Details.cshtml" />
     <None Include="Properties\PublishProfiles\NFine.Framework.Release.pubxml" />
   </ItemGroup>
   <PropertyGroup>

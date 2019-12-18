@@ -14,7 +14,7 @@ namespace NFine.Mapping.Work
     {
         public DailyMap()
         {
-            this.ToTable("Daily");
+            this.ToTable("Lild_DailyRecords");
             this.HasKey(t => t.F_Id);
         }
     }
