@@ -38,7 +38,7 @@
             // 
             this.InstallETService.Location = new System.Drawing.Point(67, 129);
             this.InstallETService.Name = "InstallETService";
-            this.InstallETService.Size = new System.Drawing.Size(112, 23);
+            this.InstallETService.Size = new System.Drawing.Size(112, 34);
             this.InstallETService.TabIndex = 0;
             this.InstallETService.Text = "安装服务";
             this.InstallETService.UseVisualStyleBackColor = true;
@@ -48,7 +48,7 @@
             // 
             this.StartETService.Location = new System.Drawing.Point(219, 129);
             this.StartETService.Name = "StartETService";
-            this.StartETService.Size = new System.Drawing.Size(97, 23);
+            this.StartETService.Size = new System.Drawing.Size(97, 34);
             this.StartETService.TabIndex = 4;
             this.StartETService.Text = "启动服务";
             this.StartETService.Click += new System.EventHandler(this.StartETService_Click);
@@ -57,7 +57,7 @@
             // 
             this.StopETService.Location = new System.Drawing.Point(338, 129);
             this.StopETService.Name = "StopETService";
-            this.StopETService.Size = new System.Drawing.Size(119, 23);
+            this.StopETService.Size = new System.Drawing.Size(119, 34);
             this.StopETService.TabIndex = 2;
             this.StopETService.Text = "停止服务";
             this.StopETService.UseVisualStyleBackColor = true;
@@ -67,7 +67,7 @@
             // 
             this.UnstallETService.Location = new System.Drawing.Point(494, 129);
             this.UnstallETService.Name = "UnstallETService";
-            this.UnstallETService.Size = new System.Drawing.Size(118, 23);
+            this.UnstallETService.Size = new System.Drawing.Size(118, 34);
             this.UnstallETService.TabIndex = 3;
             this.UnstallETService.Text = "卸载服务";
             this.UnstallETService.UseVisualStyleBackColor = true;
