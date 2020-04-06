@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Web;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace BusinessWork.Works
 {
@@ -18,8 +19,10 @@ namespace BusinessWork.Works
     {
         public void Execute(IJobExecutionContext context)
         {
-
-            LoginModel login = new LoginModel();
+            writeLog("开始执行任务");
+            //先登录处理token
+            Login();
+            //、处理数据
             var result = GetData();
             if (result.aaData != null && result.aaData.Count > 0)
             {
@@ -45,6 +48,7 @@ namespace BusinessWork.Works
             {
                 writeLog("没有要处理的数据");
             }
+            writeLog("结束执行任务");
         }
 
         #region private
@@ -79,6 +83,58 @@ namespace BusinessWork.Works
             var resultData = PostWebRequest(Url, postData, Encoding.UTF8);
         }
         #endregion
+
+        /// <summary>
+        /// 获取数据
+        /// </summary>
+        /// <returns></returns>
+        public void Login(string user = null, string pwd = null)
+        {
+            if (string.IsNullOrEmpty(user))
+                user = Configs.GetValue("userName");
+            if (string.IsNullOrEmpty(pwd))
+                pwd = Configs.GetValue("userPwd");
+            string Url = UrlConst.DomainName + UrlConst.SignInUrl;
+            string postData = $"username={user}&password={pwd}&remember=true&returnUrl=";
+            byte[] bytes = Encoding.Default.GetBytes(postData);
+            CookieContainer myCookieContainer = new CookieContainer();
+            try
+            {
+                //新建一个CookieContainer
+                HttpWebRequest myHttpWebRequest = (HttpWebRequest)WebRequest.Create(Url);
+                //新建一个HttpWebRequest
+                myHttpWebRequest.ContentType = "application/x-www-form-urlencoded";
+                myHttpWebRequest.AllowAutoRedirect = false;
+                myHttpWebRequest.UserAgent = "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)";
+                myHttpWebRequest.Timeout = 60000;
+                myHttpWebRequest.KeepAlive = true;
+                myHttpWebRequest.ContentLength = bytes.Length;
+                myHttpWebRequest.Method = "POST";
+                myHttpWebRequest.CookieContainer = myCookieContainer;
+                //设置HttpWebRequest
+                Stream myRequestStream = myHttpWebRequest.GetRequestStream();
+                myRequestStream.Write(bytes, 0, bytes.Length);
+                myRequestStream.Close();
+                HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
+                List<string> cokieStr = new List<string>();
+                foreach (Cookie ck in myHttpWebResponse.Cookies)
+                {
+                    cokieStr.Add(ck.ToString());
+                }
+                if (cokieStr != null && cokieStr.Count > 0)
+                {
+                    UrlConst.tokenStr = string.Join(";", cokieStr);
+                }
+                myHttpWebResponse.Close();
+            }
+            catch (Exception ex)
+            {
+
+                return;
+            }
+
+        }
+
         /// <summary>
         /// 获取数据
         /// </summary>
@@ -113,7 +169,7 @@ namespace BusinessWork.Works
         /// <param name="paramData">提交json数据</param>
         /// <param name="dataEncode">编码方式</param>
         /// <returns></returns>
-        static string PostWebRequest(string postUrl, string paramData, Encoding dataEncode)
+        static string PostWebRequest(string postUrl, string paramData, Encoding dataEncode, string cookie = "cookie")
         {
             string ret = string.Empty;
             try
@@ -122,7 +178,8 @@ namespace BusinessWork.Works
                 HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(new Uri(postUrl));
                 webReq.Method = "POST";
                 webReq.ContentType = "application/x-www-form-urlencoded";
-                webReq.Headers.Add("Cookie", Configs.GetValue("tokenStr")); //UrlConst.tokenStr
+                if (cookie == "cookie")
+                    webReq.Headers.Add("Cookie", UrlConst.tokenStr); //UrlConst.tokenStr  Configs.GetValue("tokenStr")
 
                 webReq.ContentLength = byteArray.Length;
                 Stream newStream = webReq.GetRequestStream();
