@@ -109,6 +109,7 @@
     <Compile Include="Web\Tree\TreeSelect.cs" />
     <Compile Include="Web\Tree\TreeSelectModel.cs" />
     <Compile Include="Web\WebHelper.cs" />
+    <Compile Include="XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

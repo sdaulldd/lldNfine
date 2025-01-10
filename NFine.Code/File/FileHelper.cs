@@ -411,6 +411,24 @@ namespace NFine.Code
                 fs.Close();
             }
         }
+        /// <summary>
+        /// 创建文件
+        /// </summary>
+        /// <param name="path">路径</param>
+        /// <param name="content">内容</param>
+        public static void ExistsFileV2(string path)
+        {
+            FileInfo fi = new FileInfo(path);
+            var di = fi.Directory;
+            if (!fi.Exists)
+            {
+                fi.Create();
+               
+            }
+            StreamWriter sw = new StreamWriter(path, false, System.Text.Encoding.GetEncoding("GB2312"));
+            sw.Write("");
+            sw.Close();
+        }
         #endregion
 
         #region 删除指定文件夹对应其他文件夹里的文件

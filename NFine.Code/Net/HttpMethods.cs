@@ -25,7 +25,7 @@ namespace NFine.Code
         /// <param name="url">URL.</param>
         /// <param name="param">POST的数据</param>
         /// <returns></returns>
-        public static string HttpPost(string url, string param = null)
+        public static string HttpPost(string url, string param = null, Dictionary<string, string> addHeader = null)
         {
             HttpWebRequest request;
 
@@ -46,7 +46,13 @@ namespace NFine.Code
             request.Accept = "*/*";
             request.Timeout = 15000;
             request.AllowAutoRedirect = false;
-
+            if (addHeader != null)
+            {
+                foreach (KeyValuePair<string, string> kvp in addHeader)
+                {
+                    request.Headers.Add(kvp.Key, kvp.Value);
+                }
+            }
 
 
             StreamWriter requestStream = null;

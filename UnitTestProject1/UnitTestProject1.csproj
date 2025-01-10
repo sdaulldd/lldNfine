@@ -47,14 +47,25 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonTest.cs" />
     <Compile Include="ETHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResultModel\BeisenKakfaLogResult.cs" />
+    <Compile Include="ResultModel\BeisenKibanaResult.cs" />
+    <Compile Include="ResultModel\XmlModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="ResultModel\Files\queryByTrace.text" />
+    <None Include="ResultModel\Files\queryDebug.text" />
+    <None Include="ResultModel\Files\queryStrs.text" />
+    <None Include="ResultModel\Files\queryTraceStrs.text" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessWork\BusinessWork.csproj">
