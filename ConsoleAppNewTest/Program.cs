@@ -16,6 +16,7 @@ namespace ConsoleAppNewTest
         {
             try
             {
+                var guidId = Guid.NewGuid().ToString();
                 // 假设我们有一个 JSON 字符串，其中包含一个 ISO 8601 格式的日期时间
                 string jsonString = "{\"dateTime\":\"2025-01-01T01:01:01\"}";
                 // 将 JSON 字符串转换为字节数组
